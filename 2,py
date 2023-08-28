@@ -1,0 +1,6 @@
+import cv2
+dirpath=r'C:\Users\haojiang66\Desktop\gcdz\in.png'
+img   = cv2.imread(dirpath)#读取数据
+print("img_cv:",img.shape)
+img: (1856, 2736, 3)
+print("img_cv:",type(img))

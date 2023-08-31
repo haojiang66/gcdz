@@ -1,6 +1,39 @@
 import cv2
+import json
 dirpath=r'C:\Users\haojiang66\Desktop\gcdz\in.png'
 img   = cv2.imread(dirpath)#读取数据
 print("img_cv:",img.shape)
-img: (1856, 2736, 3)
+img_cv: (994, 1345, 3)
 print("img_cv:",type(img))
+
+# img np.narray
+'''
+array([[[  0,   3,   0],
+        [ 11,  20,  17],
+        ...,
+        [  5,  23,  16]],
+       [[  0,   2,   0],
+        ...,
+        [  5,  23,  16]]]
+'''
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+thresh = 0  
+black_points = cv2.threshold(gray, thresh, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
+print("Black points:")  
+print(black_points)
+
+
+class point:
+    def __init__(self):
+        self.x = ""
+        self.y = ""
+        self.RGB = ""
+
+import matplotlib.pyplot as plt
+plt.imshow(img , cmap=plt.cm.binary)
+plt.savefig("origin.png")
+
+cv2.imshow("Black points", black_points) 
+plt.savefig("black.png")
+cv2.waitKey(0)
